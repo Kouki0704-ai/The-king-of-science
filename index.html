@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCIENCE MASTER</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>SCIENCE MASTER</h1>
+      <p>YOUR PERSONAL SCIENCE LAB</p>
+    </div>
+    <span class="status">● SYSTEM ONLINE</span>
+  </header>
+
+  <nav class="navigation">
+    <button class="nav-button active" data-page="home">ホーム</button>
+    <button class="nav-button" data-page="study">知識データベース</button>
+    <button class="nav-button" data-page="calculator">計算エンジン</button>
+    <button class="nav-button" data-page="quiz">確認テスト</button>
+  </nav>
+
+  <main>
+    <section id="home" class="page active">
+      <div class="hero">
+        <p class="eyebrow">WELCOME TO YOUR SCIENCE LAB</p>
+        <h2>科学を、<span>理解する。</span></h2>
+        <p>中学理科13分野を学べる、自分専用の学習システム。</p>
+      </div>
+
+      <div class="dashboard">
+        <article class="panel">
+          <h3>学習分野</h3>
+          <strong id="topicCount">13</strong>
+          <p>登録された分野</p>
+        </article>
+        <article class="panel">
+          <h3>学習記録</h3>
+          <strong id="studyCount">0</strong>
+          <p>調べた回数</p>
+        </article>
+        <article class="panel">
+          <h3>テスト正解数</h3>
+          <strong id="correctCount">0</strong>
+          <p>累計正解数</p>
+        </article>
+      </div>
+
+      <div class="panel">
+        <h3>QUICK ACCESS</h3>
+        <div class="quick-grid">
+          <button class="quick-button" data-open="study">知識を調べる</button>
+          <button class="quick-button" data-open="calculator">公式・計算</button>
+          <button class="quick-button" data-open="quiz">テストに挑戦</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>SCIENCE MESSAGE</h3>
+        <p>分からないことを、分かることに変えていこう。</p>
+      </div>
+    </section>
+
+    <section id="study" class="page">
+      <div class="panel">
+        <h2>知識データベース</h2>
+        <p>知りたい理科の用語や内容を入力してください。</p>
+        <input id="searchInput" placeholder="例：月の満ち欠け、仕事率、放射線">
+        <button id="searchButton">検索する</button>
+      </div>
+      <div id="searchResults" class="results">
+        <p>ここに検索結果が表示されます。</p>
+      </div>
+      <div class="panel">
+        <h3>分野一覧</h3>
+        <div id="topicList"></div>
+      </div>
+    </section>
+
+    <section id="calculator" class="page">
+      <div class="panel">
+        <h2>計算エンジン</h2>
+        <p>理科の数値を入力して計算できます。</p>
+        <label for="calcType">計算の種類</label>
+        <select id="calcType">
+          <option value="power">仕事率</option>
+          <option value="work">仕事</option>
+          <option value="energy">位置エネルギー</option>
+          <option value="kinetic">運動エネルギー</option>
+          <option value="electricity">電力量</option>
+          <option value="heat">熱量</option>
+        </select>
+        <div id="calcInputs"></div>
+        <button id="calculateButton">計算する</button>
+        <div id="calcResult" class="result-box">
+          計算結果がここに表示されます。
+        </div>
+      </div>
+      <div class="panel">
+        <h3>公式一覧</h3>
+        <ul>
+          <li>仕事＝力×力の向きに動いた距離</li>
+          <li>仕事率＝仕事÷時間</li>
+          <li>位置エネルギー＝質量×重力の大きさ×高さ</li>
+          <li>運動エネルギー＝1/2×質量×速さ²</li>
+          <li>電力量＝電力×時間</li>
+          <li>熱量＝電力×時間</li>
+        </ul>
+        <p class="note">※位置エネルギーは質量kg、高さm、重力の大きさ9.8N/kgで計算します。電力量・熱量は時間を秒で入力します。</p>
+      </div>
+    </section>
+
+    <section id="quiz" class="page">
+      <div class="panel">
+        <h2>SCIENCE QUIZ</h2>
+        <p>理科の知識を確認しよう！</p>
+        <div id="quizQuestion">スタートを押して問題に挑戦！</div>
+        <div id="quizChoices"></div>
+        <div id="quizFeedback"></div>
+        <button id="nextQuestion">テストを開始する</button><button class="nav-button" data-page="analyzer">自動解析</button>
+      </div>
+    </section>
+    <section id="analyzer" class="page">
+  <div class="panel">
+    <h2>SCIENCE ANALYZER</h2>
+    <p>問題画像を読み込んで、自動で文字を認識します。</p>
+
+    <input type="file" id="questionImage" accept="image/*">
+
+    <button id="analyzeButton">問題を解析する</button>
+
+    <p id="ocrStatus">待機中...</p>
+    <div id="ocrResult" class="result-box">
+      認識した問題文がここに表示されます。
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>ANALYSIS RESULT</h3>
+    <div id="answerResult">
+      解析結果がここに表示されます。
+    </div>
+  </div>
+</section>
+  </main>
+
+  <footer>SCIENCE MASTER VERSION 1.0</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
